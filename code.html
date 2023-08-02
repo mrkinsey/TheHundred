@@ -2,7 +2,7 @@
 <html lang="en" class="h-100">
 
 <head>
-    <title>App Name: A Coding Project By Michael Kinsey</title>
+    <title>The Hundred: A Coding Project By Michael Kinsey</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,6 +11,11 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/5db21ba9c6.js" crossorigin="anonymous"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow&family=Share+Tech+Mono&family=Source+Code+Pro:wght@600&display=swap" rel="stylesheet">
+
 
         <link rel="stylesheet" href="./css/site.css">
         <link rel="stylesheet" href="./css/prism.css">
@@ -22,7 +27,7 @@
 <!-- Nav Section -->
 <nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="./img/_(100 × 100 px).png" class="d-inline-block align-text-top" width="30" height="30" alt="">   APP NAME</a>
+        <a class="navbar-brand logoTitle" href="#"><img src="./img/_(100 × 100 px).png" class="d-inline-block align-text-top" width="30" height="30" alt="">   The Hundred</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -52,14 +57,68 @@
     <!-- Main Section -->
     <main class="flex-shrink-0">
         <div class="container py-5 px-4 mt-4">
-            <h2 class="border-1 border-bottom border-dark">The Code for APP NAME.</h2>
+            <h2 class="border-1 border-bottom border-dark">The Code for The Hundred.</h2>
             <div class="row row-cols-1 row-cols-lg-2">
                 <div class="col-lg-8">
                     <pre class="line-numbers">
                         <code class="language-javascript">
-                            // Call Hello World
-function helloWorld(){
-    alert("Hello World!");
+                            // Get the values from the page
+// Starts or controller function
+function getValues() {
+    // Get values from the page
+    let startValue = document.getElementById("startValue").value;
+    let endValue = document.getElementById("endValue").value;
+
+    // Parse into Integers
+    startValue = parseInt(startValue);
+    endValue = parseInt(endValue);
+
+    if(Number.isInteger(startValue) && Number.isInteger(endValue)) {
+        // We call generateNumbers
+        let numbers = generateNumbers(startValue, endValue);
+        // We call displayNumbers
+        displayNumbers(numbers)
+    } else {
+        alert("You must enter integers");
+    }
+
+}
+
+// Generate Numbers from start value and end value
+// Logic function(s)
+function generateNumbers(startValue, endValue){
+    let numbers = [];
+
+    // we want to get all numbers from start to end
+    for(let i = startValue; i <= endValue; i++){
+
+        // This will execute in a loop until i = endValue
+        numbers.push(i);
+    }
+
+    return numbers;
+}
+
+// Display the numbers in bold if they are even
+// Display or view function
+function displayNumbers(numbers){
+    let templateRows = "";
+
+    let className = "even";
+
+    for (let i = 0; i < numbers.length; i++) {
+        let number = numbers[i];
+
+        if(number % 2 == 0){
+            className = "even";
+        } else {
+            className = "odd";
+        }
+        //Template literals do not display properly in Prism. 
+        templateRows += `<tr><td class="${className}">${number}</td></tr>`;
+        }
+
+    document.getElementById("results").innerHTML = templateRows;
 }
                         </code>
                     </pre>

@@ -9,12 +9,20 @@ body{
     color:var(--dark-color);
 }
 
+.logoTitle{
+    font-family: 'Share Tech Mono', monospace;
+}
+
 nav{
     background-color: var(--dark-color);
 }
 
 footer{
     background-color: var(--dark-color);
+}
+
+.even {
+    font-weight: bold;
 }
 
 h1,h2,h3,h4,h5,h6{
